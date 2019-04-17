@@ -11,7 +11,7 @@ func GetPeople(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(services.GetPeople())
 }
 
-func SavePeople(w http.ResponseWriter, r *http.Request) {
+func SavePerson(w http.ResponseWriter, r *http.Request) {
 	address:=models.Address{"1305 St jayson"}
 	person:=models.Person{"slkdjfslkdjfsd","faroque",&address}
 	services.SavePerson(&person)
