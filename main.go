@@ -7,30 +7,24 @@ import (
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	_ "go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	_ "go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang-rest-api-best-practice/controllers"
+	"golang-rest-api-best-practice/storage"
+	_ "golang-rest-api-best-practice/storage"
 	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
-
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
-
-	if err!= nil{
-		return
-	}
-	fmt.Print(client)
-	fmt.Println("Connected to MongoDB!")
-
-	collection := client.Database("testing").Collection("numbers")
+	collection:=storage.GetCollection()
 	res, err := collection.InsertOne(ctx, bson.M{"name": "pi", "value": 3.14159})
+	if err!=nil {
+
+	}
 	id := res.InsertedID
-	fmt.Println(id)
+	fmt.Println("I am printing",id)
 
 	router := mux.NewRouter()
 	router.HandleFunc("/people", controllers.GetPeople).Methods("GET")
@@ -39,4 +33,3 @@ func main() {
 	fmt.Print("Server has started")
 }
 
-// Display all from the people var
