@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "./controllers"
 	"context"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -28,6 +27,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/people", controllers.GetPeople).Methods("GET")
+	router.HandleFunc("/people",controllers.SavePeople).Methods("POST")
 	fmt.Print("Server has started")
 	log.Fatal(http.ListenAndServe(":8080", router))
 	fmt.Print("Server has started")
