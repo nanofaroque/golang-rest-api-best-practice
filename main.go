@@ -4,10 +4,9 @@ import (
 	_ "./controllers"
 	"fmt"
 	"github.com/gorilla/mux"
+	"golang-rest-api-best-practice/controllers"
 	"log"
 	"net/http"
-	"rest-api/controllers"
-	_ "rest-api/models"
 )
 
 func main() {

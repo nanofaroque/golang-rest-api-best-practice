@@ -1,9 +1,6 @@
 package services
 
-import (
-	"rest-api/models"
-	_ "rest-api/models"
-)
+import "golang-rest-api-best-practice/models"
 
 func GetPeople() []models.Person  {
 	var people []models.Person
